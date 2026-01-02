@@ -9,10 +9,10 @@
   ![Security](https://img.shields.io/badge/Encryption-AES256_%2B_ECDH-critical?style=for-the-badge&logo=lock)
   ![Type](https://img.shields.io/badge/Category-Red_Team_Ops-blueviolet?style=for-the-badge&logo=hackthebox)
 
-  <br>
+ <br><br>
 
-  <a href="https://tryhackme.com/p/256AndreiX>
-    <img src="https://tryhackme-badges.vercel.app/api/badges?id=256AndreiX alt="TryHackMe Stats">
+  <a href="https://tryhackme.com/p/256AndreiX">
+    <img src="https://tryhackme-badges.s3.amazonaws.com/256AndreiX.png" alt="TryHackMe Badge" />
   </a>
 
 </div>
@@ -45,17 +45,16 @@
 
 ## 🛠️ Installation & Usage (Educational)
 
-1.
 Edit `Implant/main.rs` to set your listener IP:
 ```rust
 const C2_IP_ADDRESS: &str = "127.0.0.1";
 
-2.
+
 cd Implant
 cargo build --release
 
 
-3.
+
 cd Server
 python server_apt.py
 

@@ -45,7 +45,7 @@
 
 ## 🛠️ Installation & Usage (Educational)
 
-### 1.
+1.
 Edit `Implant/main.rs` to set your listener IP:
 ```rust
 const C2_IP_ADDRESS: &str = "127.0.0.1";

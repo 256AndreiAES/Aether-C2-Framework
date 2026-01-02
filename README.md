@@ -58,7 +58,7 @@ cargo build --release
 cd Server
 python server_apt.py
 
-<div align="center">
+
 
 
 ⚖️ Legal Disclaimer
@@ -67,6 +67,3 @@ This software is developed solely for educational purposes and authorized securi
 Certified Original Code • 2026 • Andrei Costin
 
 
-<img src="https://www.google.com/search?q=https://img.shields.io/badge/Author-Verified-black%3Fstyle%3Dflat-square">
-
-</div>

@@ -26,8 +26,8 @@ The server acts as an asynchronous listener and task orchestrator.
 
 ## Operational View
 <div align="center">
-  <img src="Assets/demo_server.png" width="400">
-  <img src="Assets/demo_implant.png" width="400">
+  <img src="Assets/demo2.jpg" width="400">
+  <img src="Assets/demo3.jpg" width="400">
 </div>
 
 ---

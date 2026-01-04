@@ -28,7 +28,7 @@ A simple async listener. It’s mostly just a "dumb" pipe to validate the protoc
 ## Project Structure
 * `/Implant` — The Rust agent (the core of the research).
 * `/Server` — Python controller/listener.
-* `/Assets` — PCAPs, logs, and some screenshots of the handshake.
+* `/Assets` — Some screenshots.
 
 ## Current Limitations
 * Redacted thread injection logic in `injector.rs` for public safety.

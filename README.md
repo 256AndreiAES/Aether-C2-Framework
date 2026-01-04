@@ -1,39 +1,44 @@
-# Research Framework (Rust/Python)
+# C2 Architecture Research (Rust/Python)
 
-This repository contains a proof-of-concept Command & Control (C2) architecture designed to study low-level system interactions and custom encrypted transport protocols.
+This repo is a playground for exploring custom C2 TTPs, specifically focusing on how rust implants can bypass common EDR telemetry by staying away from high-level abstractions. 
 
-**Note:** I implemented a homegrown WinHTTP stack and a custom ECDH+AES handshake to bypass standard high-level library signatures.
+It's currently a work-in-progress research project. The primary goal was to see how much I could reduce the forensic footprint by building a "homegrown" transport stack.
 
-## Technical Architecture
+**Note:** I opted for a custom WinHTTP implementation and an ECDH+AES handshake. It’s definitely not a finished product, but it's more about testing protocol stealth than feature-stuffing.
 
-### 1. Agent Implementation (Rust)
-The implant is built in Rust to leverage memory safety while interfacing with unstable/low-level Windows APIs.
-* **Network Transport:** Direct use of `WinHTTP.dll` via `windows-rs`. This was chosen over crates like `reqwest` to reduce IAT hooks.
-* **Cryptography:** Per-session **ECDH (NIST P-256)** handshake. Key derivation is handled via HKDF-SHA256.
-* **Symmetric Encryption:** **AES-256-GCM** for all command/response payloads.
-* **Evasion:** * Compile-time string obfuscation (`obfstr`).
-    * Randomized beacon jitter to disrupt network flow analysis.
+## Operational Logic & Tradecraft
 
-### 2. C2 Server (Python)
-The server acts as an asynchronous listener and task orchestrator.
-* **Crypto:** Handles the ECDH exchange and derives the AES keys for each unique agent ID.
-* **Status:** Current version is a research prototype focusing on protocol stability rather than feature density.
+### Agent (Rust)
+Built to be lightweight and avoid the typical "loud" signatures of standard Rust networking crates.
 
-## Project Layout
-* `/Implant`: Rust source code for the agent.
-* `/Server`: Python C2 listener.
-* `/Assets`: Technical demonstrations and logs.
+* **Transport & OPSEC:** Direct `WinHTTP.dll` calls via `windows-rs`. I skipped `reqwest` or `hyper` because I wanted to control the IAT (Import Address Table) and avoid unnecessary library hooks. 
+* **Key Exchange:** Per-session **ECDH (NIST P-256)**. I'm using HKDF-SHA256 for the session key derivation.
+* **Payload Encryption:** **AES-256-GCM**. Every task/response is encrypted in transit.
+* **Evasion (Basic):** * Compile-time string obfuscation (`obfstr`) to mess with static analysis.
+    * Randomized jitter to break up beaconing patterns (so it doesn't look like a heartbeat on the wire).
+    * *Still looking into more advanced memory scanning bypasses; for now, it's pretty baseline.*
 
-## Operational View
-<div align="center">
-  <img src="Assets/Demo2.jpg" width="400">
-  <img src="Assets/Demo3.jpg" width="400">
-</div>
+### C2 Listener (Python)
+A simple async listener. It’s mostly just a "dumb" pipe to validate the protocol right now.
+
+* Manages the ECDH exchange and maintains per-agent key material.
+* **Status:** No database persistence or fancy UI yet. I'm just using it to catch beacons and verify the crypto logic doesn't break under load.
+* *Probably will rewrite some of this later to handle more concurrent sessions.*
+
+## Project Structure
+* `/Implant` — The Rust agent (the core of the research).
+* `/Server` — Python controller/listener.
+* `/Assets` — PCAPs, logs, and some screenshots of the handshake.
+
+## Current Limitations
+* Redacted thread injection logic in `injector.rs` for public safety.
+* No automated persistence modules yet.
+* TLS certificate pinning is on the roadmap but not implemented.
 
 ---
 
-### Disclaimer
-This project is for educational purposes only.
+**Disclaimer:** This project is for educational use and lab environments. Don't be a script kiddie.
 
-
-
+<a href="https://tryhackme.com/p/256AndreiX" target="_blank">
+  <img src="https://tryhackme-badges.s3.amazonaws.com/256AndreiX.png" alt="TryHackMe Badge" />
+</a>

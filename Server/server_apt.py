@@ -1,6 +1,6 @@
 #AETHER C2 FRAMEWORK - SERVER
-#Author: Andrei Costin
-#License: MIT (Educational use only)
+#Author:Andrei Costin
+#License:MIT (Educational use only)
 #Decryption logic is abstracted for public release.
 
 
@@ -109,4 +109,5 @@ def console_loop():
 if __name__ == '__main__':
     t = threading.Thread(target=app.run, kwargs={'host':BIND_IP, 'port':PORT}, daemon=True)
     t.start()
+
     console_loop()
